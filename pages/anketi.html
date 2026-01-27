@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Анкети — Вх. А</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+
+  <style>
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+    }
+    @media (min-width: 980px){
+      .grid{ grid-template-columns: 1.15fr 0.85fr; }
+    }
+
+    .card{
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.10);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .title{
+      margin:0;
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .muted{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.5;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:28px;
+      padding:0 12px;
+      font-size:12px;
+      font-weight:900;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.08);
+      color:var(--muted);
+      white-space:nowrap;
+    }
+    .pill-open{ border-color: rgba(34,197,94,0.65); }
+    .pill-closed{ border-color: rgba(148,163,184,0.55); }
+    .pill-important{ border-color: rgba(245,158,11,0.75); }
+
+    .poll{
+      margin-top:14px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,0.18);
+      border-radius:18px;
+      padding:14px;
+    }
+
+    .poll-top{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+    }
+
+    .poll-title{
+      font-weight:950;
+      font-size:16px;
+      line-height:1.35;
+    }
+
+    .poll-sub{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.45;
+    }
+
+    .meta{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .options{
+      margin-top:12px;
+      display:grid;
+      gap:10px;
+    }
+
+    .opt{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,0.06);
+      border-radius:16px;
+      padding:12px;
+      cursor:pointer;
+    }
+    .opt input{
+      width:20px;
+      height:20px;
+      margin-top:2px;
+      accent-color:#22c55e;
+    }
+    .opt b{ font-weight:900; }
+    .opt small{ display:block; color:var(--muted); margin-top:2px; }
+
+    .actions{
+      margin-top:12px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,0.10);
+      color: var(--text);
+      font-size:16px;
+      font-weight:900;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .btn:hover{ background: rgba(255,255,255,0.14); }
+    .btn:active{ transform: scale(.99); }
+
+    .btn-primary{
+      background:#16a34a;
+      border-color: rgba(22,163,74,0.35);
+      box-shadow: 0 6px 18px rgba(22,163,74,.30);
+      color:white;
+    }
+    .btn-primary:hover{ background:#15803d; }
+
+    .note{
+      margin-top:12px;
+      border:1px dashed var(--stroke);
+      border-radius:18px;
+      padding:14px;
+      font-size:14px;
+      color:var(--muted);
+      line-height:1.5;
+      background:rgba(255,255,255,0.05);
+    }
+
+    .results{
+      margin-top:14px;
+      display:grid;
+      gap:12px;
+    }
+
+    .res-row{
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,0.18);
+      border-radius:18px;
+      padding:12px;
+    }
+
+    .res-top{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      font-size:14px;
+    }
+    .res-top b{ font-weight:900; }
+
+    .bar{
+      margin-top:8px;
+      height:12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,0.08);
+      overflow:hidden;
+    }
+    .fill{
+      height:100%;
+      width:0%;
+      background: rgba(34,197,94,0.75);
+    }
+
+    .arch{
+      margin-top:14px;
+      display:grid;
+      gap:12px;
+    }
+
+    .arch-item{
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,0.18);
+      border-radius:18px;
+      padding:14px;
+    }
+    .arch-title{ font-weight:950; font-size:16px; }
+    .arch-sub{ margin-top:6px; color:var(--muted); font-size:14px; line-height:1.45; }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="logo">A</div>
+      <div>
+        <div class="brand-title">Етажна собственост — бл. 1, вх. А</div>
+        <div class="brand-sub">София, ж.к. Стрелбище</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+      <span class="pill" id="dt">—</span>
+      <a class="pill" href="../index.html" style="text-decoration:none;">← Меню</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="panel">
+    <h1 class="h1">🗳️ Анкети</h1>
+    <p class="sub">
+      Анкети за вземане на решения и събиране на мнения. Това е мокъп – гласуването е демонстрационно.
+    </p>
+
+    <div class="grid">
+
+      <!-- LEFT: Active poll -->
+      <div class="card">
+        <h2 class="title">Активна анкета</h2>
+        <p class="muted">Най-важната анкета е най-отгоре. Всеки апартамент гласува веднъж (в реалната версия).</p>
+
+        <div class="poll" id="poll1">
+          <div class="poll-top">
+            <div>
+              <div class="poll-title">Избор на ден за почистване на общите части</div>
+              <div class="poll-sub">
+                Цел: да се избере най-удобен ден/график за повечето живущи.
+              </div>
+            </div>
+            <span class="pill pill-open">Отворена</span>
+          </div>
+
+          <div class="meta">
+            <span class="pill">Краен срок: 31.01.2026</span>
+            <span class="pill pill-important">Важно</span>
+          </div>
+
+          <form class="options" onsubmit="return votePoll1(event)">
+            <label class="opt">
+              <input type="radio" name="p1" value="tue" required />
+              <div>
+                <b>Вторник</b>
+                <small>Сутрин / преди обяд</small>
+              </div>
+            </label>
+
+            <label class="opt">
+              <input type="radio" name="p1" value="fri" />
+              <div>
+                <b>Петък</b>
+                <small>Сутрин / преди обяд</small>
+              </div>
+            </label>
+
+            <label class="opt">
+              <input type="radio" name="p1" value="sat" />
+              <div>
+                <b>Събота</b>
+                <small>По-удобно за някои хора</small>
+              </div>
+            </label>
+
+            <div class="actions">
+              <button class="btn btn-primary" type="submit">✅ Гласувай</button>
+              <button class="btn" type="button" onclick="showResults()">📊 Виж резултати</button>
+            </div>
+          </form>
+
+          <div class="note">
+            🔒 Анкетите са предназначени за живущите във входа. В реалната версия ще има защита (вход с код/достъп).
+          </div>
+
+          <!-- Results (hidden until button) -->
+          <div class="results" id="resultsBox" style="display:none;">
+            <div class="res-row">
+              <div class="res-top"><b>Вторник</b> <span>48%</span></div>
+              <div class="bar"><div class="fill" style="width:48%;"></div></div>
+            </div>
+
+            <div class="res-row">
+              <div class="res-top"><b>Петък</b> <span>38%</span></div>
+              <div class="bar"><div class="fill" style="width:38%;"></div></div>
+            </div>
+
+            <div class="res-row">
+              <div class="res-top"><b>Събота</b> <span>14%</span></div>
+              <div class="bar"><div class="fill" style="width:14%;"></div></div>
+            </div>
+
+            <p class="muted" style="margin:0;">
+              * Примерни резултати (мокъп).
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Archive -->
+      <div class="card">
+        <h2 class="title">Архив анкети (пример)</h2>
+        <p class="muted">Минали анкети и обобщени резултати.</p>
+
+        <div class="arch">
+          <div class="arch-item">
+            <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start;">
+              <div>
+                <div class="arch-title">Избор на изпълнител за асансьор</div>
+                <div class="arch-sub">Резултат: избрана фирма „__________“. Утвърдено на събрание.</div>
+              </div>
+              <span class="pill pill-closed">Затворена</span>
+            </div>
+          </div>
+
+          <div class="arch-item">
+            <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start;">
+              <div>
+                <div class="arch-title">Предложение: LED осветление</div>
+                <div class="arch-sub">Резултат: „Да“ — 72% (пример). Включено в план „Ремонти и поддръжка“.</div>
+              </div>
+              <span class="pill pill-closed">Затворена</span>
+            </div>
+          </div>
+
+          <div class="arch-item">
+            <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start;">
+              <div>
+                <div class="arch-title">Часове за плащане на каса</div>
+                <div class="arch-sub">Резултат: избран диапазон „__________“.</div>
+              </div>
+              <span class="pill pill-closed">Затворена</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="note" style="margin-top:14px;">
+          ✅ Добра практика: всяка анкета да има срок, кратко описание и публикуван резултат.
+        </div>
+      </div>
+
+    </div>
+
+    <a class="back" href="../index.html">← Назад към менюто</a>
+  </section>
+</main>
+
+<script>
+  function setDateTime(){
+    const el = document.getElementById('dt');
+    const now = new Date();
+    el.textContent = "🕒 " + now.toLocaleString('bg-BG', {
+      weekday:'short', year:'numeric', month:'2-digit', day:'2-digit',
+      hour:'2-digit', minute:'2-digit'
+    });
+  }
+  setDateTime();
+  setInterval(setDateTime, 10000);
+
+  function showResults(){
+    const box = document.getElementById('resultsBox');
+    box.style.display = (box.style.display === 'none') ? 'grid' : 'none';
+  }
+
+  function votePoll1(e){
+    e.preventDefault();
+    alert("Гласът е записан (мокъп). В реалната версия ще се пази по апартамент/достъп.");
+    return false;
+  }
+</script>
+
+</body>
+</html>

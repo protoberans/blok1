@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Аварийни контакти — Вх. А</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+
+  <style>
+    .stack{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+    }
+
+    .card{
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.10);
+      border-radius:24px;
+      padding:20px;
+    }
+
+    .card h2{
+      margin:0;
+      font-size:24px;
+      font-weight:800;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .card p{
+      margin-top:10px;
+      font-size:17px;
+      line-height:1.5;
+      color:var(--muted);
+    }
+
+    .rows{
+      margin-top:14px;
+      display:grid;
+      gap:10px;
+    }
+
+    .row{
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid var(--stroke);
+      background:rgba(0,0,0,0.18);
+      font-size:15px;
+    }
+
+    .row b{ font-weight:800; }
+
+    .actions{
+      margin-top:16px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .call{
+      background:#16a34a;
+      color:white;
+      font-size:18px;
+      font-weight:800;
+      padding:14px 20px;
+      border-radius:18px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      box-shadow:0 6px 18px rgba(22,163,74,.35);
+    }
+
+    .call:hover{
+      background:#15803d;
+    }
+
+    .tag{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.08);
+      color:var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="logo">A</div>
+      <div>
+        <div class="brand-title">Етажна собственост — бл. 1, вх. А</div>
+        <div class="brand-sub">София, ж.к. Стрелбище</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:center;">
+      <span class="pill" id="dt">—</span>
+      <a class="pill" href="../index.html" style="text-decoration:none;">← Меню</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="panel">
+    <h1 class="h1">🚨 Аварийни контакти</h1>
+    <p class="sub">
+      При проблем в общите части използвайте съответния контакт.
+      При опасност за хора — незабавно 112.
+    </p>
+
+    <div class="stack">
+
+      <!-- DOMSAVET FIRST -->
+      <div class="card">
+        <h2>🏢 Домсъвет <span class="tag">ПЪРВИ КОНТАКТ</span></h2>
+        <p>
+          При повечето проблеми първо уведомете Домсъвета, за да се координират действията.
+        </p>
+
+        <div class="rows">
+          <div class="row"><b>Дежурен телефон:</b> __________</div>
+          <div class="row"><b>Имейл:</b> __________</div>
+        </div>
+
+        <div class="actions">
+          <a class="call" href="tel:0000000000">📞 Обади се</a>
+        </div>
+      </div>
+
+
+      <!-- Elevator -->
+      <div class="card">
+        <h2>🛗 Асансьор</h2>
+        <p>Заклещване или повреда на асансьора.</p>
+
+        <div class="rows">
+          <div class="row"><b>Фирма:</b> __________</div>
+          <div class="row"><b>Аварии:</b> __________</div>
+        </div>
+
+        <div class="actions">
+          <a class="call" href="tel:0000000000">📞 Обади се</a>
+        </div>
+      </div>
+
+      <!-- Water -->
+      <div class="card">
+        <h2>💧 ВиК / Теч</h2>
+        <p>Течове, спукани тръби, проблеми с общи инсталации.</p>
+
+        <div class="rows">
+          <div class="row"><b>Дежурен ВиК:</b> __________</div>
+          <div class="row"><b>Аварии:</b> __________</div>
+        </div>
+
+        <div class="actions">
+          <a class="call" href="tel:0000000000">📞 Обади се</a>
+        </div>
+      </div>
+
+      <!-- Electricity -->
+      <div class="card">
+        <h2>⚡ Електро</h2>
+        <p>Проблеми с ток, табла, осветление в общите части.</p>
+
+        <div class="rows">
+          <div class="row"><b>ЕРП аварии:</b> __________</div>
+          <div class="row"><b>Електротехник:</b> __________</div>
+        </div>
+
+        <div class="actions">
+          <a class="call" href="tel:0000000000">📞 Обади се</a>
+        </div>
+      </div>
+
+      <!-- Entrance -->
+      <div class="card">
+        <h2>🔑 Вход / Чипове / Врата</h2>
+        <p>Проблем с входната врата, брава или чип достъп.</p>
+
+        <div class="rows">
+          <div class="row"><b>Техник:</b> __________</div>
+          <div class="row"><b>Телефон:</b> __________</div>
+        </div>
+
+        <div class="actions">
+          <a class="call" href="tel:0000000000">📞 Обади се</a>
+        </div>
+      </div>
+
+      <!-- Pest control -->
+      <div class="card">
+        <h2>🐜 Дезинсекция / Дератизация</h2>
+        <p>Хлебарки, мравки, гризачи и други вредители.</p>
+
+        <div class="rows">
+          <div class="row"><b>Фирма:</b> __________</div>
+          <div class="row"><b>Телефон:</b> __________</div>
+        </div>
+
+        <div class="actions">
+          <a class="call" href="tel:0000000000">📞 Обади се</a>
+        </div>
+      </div>
+
+
+
+      <!-- Locksmith -->
+      <div class="card">
+        <h2>🔒 Ключар</h2>
+        <p>Блокирала брава или проблем с общо помещение.</p>
+
+        <div class="rows">
+          <div class="row"><b>Телефон:</b> __________</div>
+        </div>
+
+        <div class="actions">
+          <a class="call" href="tel:0000000000">📞 Обади се</a>
+        </div>
+      </div>
+
+    </div>
+
+    <a class="back" href="../index.html">← Назад към менюто</a>
+
+  </section>
+</main>
+
+<script>
+  function setDateTime(){
+    const el = document.getElementById('dt');
+    const now = new Date();
+    el.textContent = "🕒 " + now.toLocaleString('bg-BG', {
+      weekday:'short', year:'numeric', month:'2-digit', day:'2-digit',
+      hour:'2-digit', minute:'2-digit'
+    });
+  }
+  setDateTime();
+  setInterval(setDateTime, 10000);
+</script>
+
+</body>
+</html>

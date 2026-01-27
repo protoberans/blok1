@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Сигнали — Вх. А</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+
+  <style>
+    .layout{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:16px;
+    }
+    @media (min-width: 980px){
+      .layout{ grid-template-columns: 1.15fr 0.85fr; }
+    }
+
+    .card{
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.10);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .title{
+      margin:0;
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .muted-text{
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.5;
+      margin-top:8px;
+    }
+
+    .form{
+      margin-top:14px;
+      display:grid;
+      gap:12px;
+    }
+
+    label{
+      display:block;
+      font-size:14px;
+      font-weight:700;
+      margin-bottom:6px;
+    }
+
+    /* Inputs */
+    input, textarea, select{
+      width:100%;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,0.18);
+      color: var(--text);
+      border-radius:16px;
+      padding:12px 12px;
+      font-size:16px;
+      outline:none;
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,0.55); }
+
+    /* Better focus */
+    input:focus, textarea:focus, select:focus{
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.22);
+      border-color: rgba(56,189,248,0.45);
+    }
+
+    /* Modern select styling */
+    select{
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      padding-right: 44px; /* space for arrow */
+      cursor: pointer;
+      background-image:
+        linear-gradient(45deg, transparent 50%, rgba(255,255,255,0.75) 50%),
+        linear-gradient(135deg, rgba(255,255,255,0.75) 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+      background-position:
+        calc(100% - 18px) calc(50% - 4px),
+        calc(100% - 12px) calc(50% - 4px),
+        calc(100% - 42px) 50%;
+      background-size: 6px 6px, 6px 6px, 1px 60%;
+      background-repeat: no-repeat;
+    }
+
+    option{
+      background: #0f172a; /* fallback */
+      color: #fff;
+    }
+
+    .row2{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    @media (min-width: 700px){
+      .row2{ grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Actions */
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:6px;
+    }
+
+    /* left button, right pill */
+    .actions-between{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,0.10);
+      color: var(--text);
+      font-size:16px;
+      font-weight:900;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .btn:hover{ background: rgba(255,255,255,0.14); }
+    .btn:active{ transform: scale(.99); }
+
+    .btn-primary{
+      background:#16a34a;
+      border-color: rgba(22,163,74,0.35);
+      box-shadow: 0 6px 18px rgba(22,163,74,.30);
+      color:white;
+    }
+    .btn-primary:hover{ background:#15803d; }
+
+    /* Pill (use your fixed-height version if you applied it globally) */
+    .pill-local{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:32px;
+      padding:0 14px;
+      font-size:12px;
+      font-weight:700;
+      line-height:1;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.08);
+      color:var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Status list */
+    .status{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,0.18);
+      border-radius:18px;
+      padding:12px 12px;
+    }
+    .status-title{
+      font-weight:900;
+      font-size:16px;
+    }
+    .status-sub{
+      margin-top:4px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.35;
+    }
+
+    .badge{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.08);
+      color:var(--text);
+      white-space:nowrap;
+      font-weight:800;
+    }
+    .badge-new{ border-color: rgba(59,130,246,0.5); }
+    .badge-progress{ border-color: rgba(245,158,11,0.6); }
+    .badge-done{ border-color: rgba(34,197,94,0.6); }
+
+    /* Checkbox row */
+    .check{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      margin-top:6px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.4;
+    }
+    .check input{
+      width:20px;
+      height:20px;
+      margin-top:2px;
+      accent-color: #22c55e;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="logo">A</div>
+      <div>
+        <div class="brand-title">Етажна собственост — бл. 1, вх. А</div>
+        <div class="brand-sub">София, ж.к. Стрелбище</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+      <span class="pill-local" id="dt">—</span>
+      <a class="pill-local" href="../index.html" style="text-decoration:none;">← Меню</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="panel">
+    <h1 class="h1">🛠️ Сигнали</h1>
+    <p class="sub">
+      Подайте сигнал за проблем в общите части или предложение. Ако има опасност за хора — използвайте „Аварийни контакти“.
+    </p>
+
+    <div class="layout">
+
+      <!-- Left: form -->
+      <div class="card">
+        <h2 class="title">Подай сигнал</h2>
+        <p class="muted-text">
+          Попълнете кратко и ясно. Домсъветът ще прегледа сигнала и ще отбележи статус.
+        </p>
+
+        <div class="actions-between">
+          <a class="btn" href="avariyni-kontakti.html">🚨 Аварийни контакти</a>
+          <span class="pill-local">Срок за отговор: до 3 работни дни</span>
+        </div>
+
+        <form class="form" onsubmit="return mockSubmit(event)">
+          <div class="row2">
+            <div>
+              <label for="apt">Апартамент</label>
+              <input id="apt" name="apt" placeholder="напр. 12" required />
+            </div>
+            <div>
+              <label for="phone">Телефон за връзка</label>
+              <input id="phone" name="phone" placeholder="напр. 08xx xxx xxx" inputmode="tel" required />
+            </div>
+          </div>
+
+          <div class="row2">
+            <div>
+              <label for="cat">Категория</label>
+              <select id="cat" name="cat" required>
+                <option value="" selected disabled>Изберете…</option>
+                <option>Асансьор</option>
+                <option>Осветление</option>
+                <option>Вход / Чипове / Врата</option>
+                <option>ВиК / Теч</option>
+                <option>Електро</option>
+                <option>Чистота</option>
+                <option>Шум / Нарушаване на реда</option>
+                <option>Вредители (хлебарки/гризачи)</option>
+                <option>Друго</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="urgency">Спешност</label>
+              <select id="urgency" name="urgency" required>
+                <option value="" selected disabled>Изберете…</option>
+                <option>Ниска (не е спешно)</option>
+                <option>Средна (нужна е реакция)</option>
+                <option>Висока (възможна авария)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="desc">Описание</label>
+            <textarea id="desc" name="desc" placeholder="Напишете какво, къде и кога се случва (етаж, място, час)..." required></textarea>
+          </div>
+
+          <div>
+            <label for="where">Място (по избор)</label>
+            <input id="where" name="where" placeholder="напр. етаж 3, пред асансьора / фоайе / мазе" />
+          </div>
+
+          <div class="check">
+            <input type="checkbox" id="agree" required />
+            <label for="agree" style="margin:0;font-weight:600;">
+              Съгласен/съгласна съм Домсъветът да използва данните ми (апартамент и телефон) само за контакт по този сигнал.
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">✅ Изпрати сигнал</button>
+            <button class="btn" type="button" onclick="fillExample()">📝 Попълни пример</button>
+          </div>
+
+          <p class="muted-text" style="margin-top:8px;">
+            * Това е мокъп. В реалната платформа сигналът ще се записва и ще получава номер и статус.
+          </p>
+        </form>
+      </div>
+
+      <!-- Right: “My tickets” + tips -->
+      <div class="card">
+        <h2 class="title">Моите сигнали (пример)</h2>
+        <p class="muted-text">Тук ще виждате статус и история на сигналите.</p>
+
+        <div style="margin-top:14px; display:grid; gap:12px;">
+          <div class="status">
+            <div>
+              <div class="status-title">Осветление — етаж 3</div>
+              <div class="status-sub">Подаден: 20.01.2026 · „Лампата пред ап. 14 не свети.“</div>
+            </div>
+            <span class="badge badge-progress">В процес</span>
+          </div>
+
+          <div class="status">
+            <div>
+              <div class="status-title">Входна врата — затваряне</div>
+              <div class="status-sub">Подаден: 19.01.2026 · „Вратата не затваря плътно.“</div>
+            </div>
+            <span class="badge badge-new">Получен</span>
+          </div>
+
+          <div class="status">
+            <div>
+              <div class="status-title">Чистота — фоайе</div>
+              <div class="status-sub">Подаден: 17.01.2026 · „Разлято, хлъзга се.“</div>
+            </div>
+            <span class="badge badge-done">Решен</span>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;">
+          <h3 class="title" style="font-size:18px;">Полезни съвети</h3>
+          <ul class="muted-text" style="margin:10px 0 0; padding-left:18px;">
+            <li>Опишете точно мястото (етаж/зона) и какво се случва.</li>
+            <li>Ако е възможно, посочете приблизителен час/дата.</li>
+            <li>При авария/опасност използвайте „Аварийни контакти“.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <a class="back" href="../index.html">← Назад към менюто</a>
+  </section>
+</main>
+
+<script>
+  // date/time in header
+  function setDateTime(){
+    const el = document.getElementById('dt');
+    const now = new Date();
+    el.textContent = "🕒 " + now.toLocaleString('bg-BG', {
+      weekday:'short', year:'numeric', month:'2-digit', day:'2-digit',
+      hour:'2-digit', minute:'2-digit'
+    });
+  }
+  setDateTime();
+  setInterval(setDateTime, 10000);
+
+  // Mock submit
+  function mockSubmit(e){
+    e.preventDefault();
+    alert("Сигналът е изпратен (мокъп). В реалната платформа ще получите номер и статус.");
+    e.target.reset();
+    return false;
+  }
+
+  // Fill example (presentation helper)
+  function fillExample(){
+    document.getElementById('apt').value = "12";
+    document.getElementById('phone').value = "0888 123 456";
+    document.getElementById('cat').value = "Осветление";
+    document.getElementById('urgency').value = "Средна (нужна е реакция)";
+    document.getElementById('desc').value =
+      "На етаж 3, пред асансьора, лампата не свети от вчера вечер. Мястото е тъмно и е възможно да се спъне човек.";
+    document.getElementById('where').value = "Етаж 3, пред асансьора";
+    document.getElementById('agree').checked = true;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>

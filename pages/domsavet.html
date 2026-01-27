@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Домсъвет — Вх. А</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+
+  <style>
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+    }
+    @media (min-width: 980px){
+      .grid{ grid-template-columns: 1.15fr 0.85fr; }
+    }
+
+    .card{
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.10);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .title{
+      margin:0;
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .muted{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.5;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:28px;
+      padding:0 12px;
+      font-size:12px;
+      font-weight:900;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.08);
+      color:var(--muted);
+      white-space:nowrap;
+    }
+    .pill-primary{ border-color: rgba(59,130,246,0.55); }
+    .pill-green{ border-color: rgba(34,197,94,0.65); }
+    .pill-warn{ border-color: rgba(245,158,11,0.75); }
+
+    .people{
+      margin-top:14px;
+      display:grid;
+      gap:12px;
+    }
+
+    .person{
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,0.18);
+      border-radius:18px;
+      padding:14px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .p-left{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+
+    .avatar{
+      width:44px;
+      height:44px;
+      border-radius:16px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,0.08);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:950;
+      font-size:16px;
+      color:var(--text);
+    }
+
+    .p-name{
+      font-weight:950;
+      font-size:16px;
+      line-height:1.25;
+    }
+    .p-sub{
+      margin-top:4px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.4;
+    }
+
+    .p-meta{
+      margin-top:6px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.10);
+      color:var(--text);
+      font-size:14px;
+      font-weight:900;
+      text-decoration:none;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn:hover{ background:rgba(255,255,255,0.14); }
+
+    .btn-call{
+      background:#16a34a;
+      border-color: rgba(22,163,74,0.35);
+      box-shadow: 0 6px 18px rgba(22,163,74,.25);
+      color:white;
+    }
+    .btn-call:hover{ background:#15803d; }
+
+    .kv{
+      margin-top:12px;
+      display:grid;
+      gap:10px;
+    }
+    .kv-row{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,0.18);
+      border-radius:16px;
+      padding:10px 12px;
+      font-size:15px;
+      color:var(--text);
+    }
+    .kv-row b{ font-weight:900; }
+
+    .list{
+      margin-top:10px;
+      padding-left:18px;
+      color:var(--text);
+      line-height:1.55;
+      font-size:15px;
+    }
+
+    .quick{
+      margin-top:12px;
+      display:grid;
+      gap:10px;
+    }
+
+    .note{
+      margin-top:12px;
+      border:1px dashed var(--stroke);
+      border-radius:18px;
+      padding:14px;
+      font-size:14px;
+      color:var(--muted);
+      line-height:1.5;
+      background:rgba(255,255,255,0.05);
+    }
+
+    details{
+      margin-top:12px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,0.18);
+      border-radius:18px;
+      padding:12px 14px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight:900;
+      font-size:16px;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    details p{
+      margin:10px 0 0;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="logo">A</div>
+      <div>
+        <div class="brand-title">Етажна собственост — бл. 1, вх. А</div>
+        <div class="brand-sub">София, ж.к. Стрелбище</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+      <span class="pill" id="dt">—</span>
+      <a class="pill" href="../index.html" style="text-decoration:none;">← Меню</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="panel">
+    <h1 class="h1">🏢 Домсъвет</h1>
+    <p class="sub">
+      Контакти, приемно време и отговорности на Домсъвета. Данните са примерни (мокъп).
+    </p>
+
+    <div class="grid">
+
+      <!-- LEFT: People + responsibilities -->
+      <div class="card">
+        <h2 class="title">Контакти (пример)</h2>
+        <p class="muted">За повечето случаи – първо пишете/обадете се на Домсъвета.</p>
+
+        <div class="people">
+          <div class="person">
+            <div class="p-left">
+              <div class="avatar">ДС</div>
+              <div>
+                <div class="p-name">Председател / Координатор</div>
+                <div class="p-sub">Организация, решения, комуникация с фирми и живущи.</div>
+                <div class="p-meta">
+                  <span class="pill pill-primary">Основен контакт</span>
+                  <span class="pill">Тел: __________</span>
+                  <span class="pill">Имейл: __________</span>
+                </div>
+              </div>
+            </div>
+            <a class="btn btn-call" href="tel:0000000000">📞 Обади се</a>
+          </div>
+
+          <div class="person">
+            <div class="p-left">
+              <div class="avatar">К</div>
+              <div>
+                <div class="p-name">Касиер</div>
+                <div class="p-sub">Такси, плащания, отчети, разписки (според правилата).</div>
+                <div class="p-meta">
+                  <span class="pill">Тел: __________</span>
+                  <span class="pill">Revolut: +359 __________</span>
+                </div>
+              </div>
+            </div>
+            <a class="btn btn-call" href="tel:0000000000">📞 Обади се</a>
+          </div>
+
+          <div class="person">
+            <div class="p-left">
+              <div class="avatar">Т</div>
+              <div>
+                <div class="p-name">Техническа поддръжка (контакт)</div>
+                <div class="p-sub">Координация за ремонти, огледи и дребни технически проблеми.</div>
+                <div class="p-meta">
+                  <span class="pill">Тел: __________</span>
+                  <span class="pill pill-warn">За спешно: виж „Аварийни контакти“</span>
+                </div>
+              </div>
+            </div>
+            <a class="btn btn-call" href="tel:0000000000">📞 Обади се</a>
+          </div>
+        </div>
+
+        <div class="note">
+          🔒 Контактите са предназначени за живущите във входа. Публикувайте само това, което Домсъветът е съгласен да сподели.
+        </div>
+
+        <h3 class="title" style="font-size:18px;margin-top:14px;">Приемно време (пример)</h3>
+        <div class="kv">
+          <div class="kv-row"><b>Телефон:</b> 18:00 – 20:00 (делнични дни)</div>
+          <div class="kv-row"><b>Срещи на място:</b> по предварителна уговорка</div>
+          <div class="kv-row"><b>Срок за отговор:</b> до 3 работни дни</div>
+        </div>
+
+        <h3 class="title" style="font-size:18px;margin-top:14px;">С какво помага Домсъветът</h3>
+        <ul class="list">
+          <li>Комуникация с изпълнители и фирми (асансьор, почистване, ремонти).</li>
+          <li>Съобщения и организация за Общи събрания.</li>
+          <li>Координация на ремонти и поддръжка в общите части.</li>
+          <li>Отчетност и публикуване на документи (според приети правила).</li>
+        </ul>
+
+        <h3 class="title" style="font-size:18px;margin-top:14px;">С какво НЕ се занимава</h3>
+        <ul class="list">
+          <li>Проблеми вътре в апартаменти (частни ремонти, индивидуални ВиК/ел. инсталации).</li>
+          <li>Лични спорове между съседи (освен ако не засягат реда в общите части).</li>
+          <li>Лични пратки/съхранение в общите части.</li>
+        </ul>
+
+        <details>
+          <summary>Как да подам сигнал правилно?</summary>
+          <p>
+            Най-добре през секция „Сигнали“. Опишете: място (етаж/зона), какво се случва, от кога и колко е спешно.
+            При опасност за хора – използвайте „Аварийни контакти“ (или 112).
+          </p>
+        </details>
+      </div>
+
+      <!-- RIGHT: Quick links + reminders -->
+      <div class="card">
+        <h2 class="title">Бърз достъп</h2>
+        <p class="muted">Най-често използваните секции.</p>
+
+        <div class="quick">
+          <a class="btn" href="signali.html">🛠️ Сигнали</a>
+          <a class="btn" href="avariyni-kontakti.html">🚨 Аварийни контакти</a>
+          <a class="btn" href="taksi.html">💳 Такси и плащания</a>
+          <a class="btn" href="dokumenti.html">📄 Документи</a>
+          <a class="btn" href="obshto-sabranie.html">🏛️ Общо събрание</a>
+          <a class="btn" href="saobshteniya.html">📢 Съобщения</a>
+        </div>
+
+        <div class="note" style="margin-top:14px;">
+          ✅ Добра практика: публикувайте всички решения, протоколи и отчети в „Документи“.
+          Това намалява въпросите и напрежението във входа.
+        </div>
+
+        <div class="note">
+          📌 Ако проблемът е спешен (теч, ток, асансьор, опасност) – първо виж „Аварийни контакти“.
+        </div>
+      </div>
+
+    </div>
+
+    <a class="back" href="../index.html">← Назад към менюто</a>
+  </section>
+</main>
+
+<script>
+  function setDateTime(){
+    const el = document.getElementById('dt');
+    const now = new Date();
+    el.textContent = "🕒 " + now.toLocaleString('bg-BG', {
+      weekday:'short', year:'numeric', month:'2-digit', day:'2-digit',
+      hour:'2-digit', minute:'2-digit'
+    });
+  }
+  setDateTime();
+  setInterval(setDateTime, 10000);
+</script>
+
+</body>
+</html>

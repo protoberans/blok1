@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ремонти и поддръжка — Вх. А</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+
+  <style>
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+    }
+    @media (min-width: 980px){
+      .grid{ grid-template-columns: 1.15fr 0.85fr; }
+    }
+
+    .card{
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.10);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .title{
+      margin:0;
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .muted{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.5;
+    }
+
+    .pill-local{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:32px;
+      padding:0 14px;
+      font-size:12px;
+      font-weight:700;
+      line-height:1;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.08);
+      color:var(--muted);
+      white-space:nowrap;
+    }
+
+    .actions-between{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,0.10);
+      color: var(--text);
+      font-size:16px;
+      font-weight:900;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .btn:hover{ background: rgba(255,255,255,0.14); }
+    .btn:active{ transform: scale(.99); }
+
+    .btn-primary{
+      background:#16a34a;
+      border-color: rgba(22,163,74,0.35);
+      box-shadow: 0 6px 18px rgba(22,163,74,.30);
+      color:white;
+    }
+    .btn-primary:hover{ background:#15803d; }
+
+    .list{
+      margin-top:14px;
+      display:grid;
+      gap:12px;
+    }
+
+    .item{
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,0.18);
+      border-radius:18px;
+      padding:14px;
+    }
+
+    .item-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .item-title{
+      font-weight:950;
+      font-size:16px;
+      line-height:1.35;
+    }
+    .item-sub{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.45;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:26px;
+      padding:0 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,0.08);
+      font-size:12px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+    .b-plan{ border-color: rgba(59,130,246,0.55); }
+    .b-prog{ border-color: rgba(245,158,11,0.75); }
+    .b-done{ border-color: rgba(34,197,94,0.70); }
+
+    .kv{
+      margin-top:10px;
+      display:grid;
+      gap:8px;
+    }
+    .kv-row{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,0.18);
+      border-radius:16px;
+      padding:10px 12px;
+      font-size:14px;
+      color:var(--text);
+    }
+    .kv-row b{ font-weight:900; }
+
+    .section-sep{
+      margin-top:14px;
+      border-top:1px solid var(--stroke);
+      opacity:.9;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="logo">A</div>
+      <div>
+        <div class="brand-title">Етажна собственост — бл. 1, вх. А</div>
+        <div class="brand-sub">София, ж.к. Стрелбище</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+      <span class="pill-local" id="dt">—</span>
+      <a class="pill-local" href="../index.html" style="text-decoration:none;">← Меню</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="panel">
+    <h1 class="h1">🏗️ Ремонти и поддръжка</h1>
+    <p class="sub">
+      Тук се публикуват текущи ремонти, планирани дейности и история на завършените работи.
+    </p>
+
+    <div class="grid">
+      <!-- Left: Active & Planned -->
+      <div class="card">
+        <h2 class="title">Текущи и планирани дейности</h2>
+        <p class="muted">
+          Статусите са: Планиран, В процес, Завършен. Детайлите са примерни (мокъп).
+        </p>
+
+        <div class="actions-between">
+          <a class="btn" href="signali.html">🛠️ Подай сигнал</a>
+          <span class="pill-local">Обновено: (автоматично)</span>
+        </div>
+
+        <div class="list">
+          <!-- In progress -->
+          <div class="item">
+            <div class="item-top">
+              <div>
+                <div class="item-title">Подмяна на осветление (LED) — етажи 1–6</div>
+                <div class="item-sub">Подмяна на тела и проверка на датчици за движение.</div>
+              </div>
+              <span class="badge b-prog">В процес</span>
+            </div>
+
+            <div class="kv">
+              <div class="kv-row"><b>Срок:</b> 25.01.2026</div>
+              <div class="kv-row"><b>Изпълнител:</b> __________</div>
+              <div class="kv-row"><b>Отговорник:</b> Домсъвет</div>
+            </div>
+          </div>
+
+          <!-- Planned -->
+          <div class="item">
+            <div class="item-top">
+              <div>
+                <div class="item-title">Профилактика на асансьора</div>
+                <div class="item-sub">Проверка, смазване, тест на системи за безопасност.</div>
+              </div>
+              <span class="badge b-plan">Планиран</span>
+            </div>
+
+            <div class="kv">
+              <div class="kv-row"><b>Дата:</b> 24.01.2026 · 10:00–12:00</div>
+              <div class="kv-row"><b>Изпълнител:</b> __________</div>
+              <div class="kv-row"><b>Бележка:</b> възможно временно спиране</div>
+            </div>
+          </div>
+
+          <!-- Planned -->
+          <div class="item">
+            <div class="item-top">
+              <div>
+                <div class="item-title">Настройка на входна врата и чип-достъп</div>
+                <div class="item-sub">Реглаж на механизма за затваряне и тест на четците.</div>
+              </div>
+              <span class="badge b-plan">Планиран</span>
+            </div>
+
+            <div class="kv">
+              <div class="kv-row"><b>Седмица:</b> 27–31.01.2026</div>
+              <div class="kv-row"><b>Изпълнител:</b> __________</div>
+              <div class="kv-row"><b>Бележка:</b> при проблеми – подайте сигнал</div>
+            </div>
+          </div>
+
+          <!-- Done -->
+          <div class="item">
+            <div class="item-top">
+              <div>
+                <div class="item-title">Почистване и дезинфекция на общите части</div>
+                <div class="item-sub">Извършено допълнително поради сезонна профилактика.</div>
+              </div>
+              <span class="badge b-done">Завършен</span>
+            </div>
+
+            <div class="kv">
+              <div class="kv-row"><b>Дата:</b> 15.01.2026</div>
+              <div class="kv-row"><b>Изпълнител:</b> __________</div>
+              <div class="kv-row"><b>Отчет:</b> наличен в „Документи“</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-sep"></div>
+
+        <p class="muted" style="margin-top:12px;">
+          * За по-големи ремонти (покрив/фасада/инсталации) вижте решенията в „Общо събрание“ и отчетите в „Документи“.
+        </p>
+      </div>
+
+      <!-- Right: Maintenance contacts + mini rules -->
+      <div class="card">
+        <h2 class="title">Бърз достъп</h2>
+        <p class="muted">
+          Ако проблемът е спешен или има риск — използвайте аварийните контакти.
+        </p>
+
+        <div class="list">
+          <a class="btn btn-primary" href="avariyni-kontakti.html">🚨 Аварийни контакти</a>
+          <a class="btn" href="taksi.html">💳 Такси и плащания</a>
+          <a class="btn" href="dokumenti.html">📄 Документи</a>
+        </div>
+
+        <div class="section-sep"></div>
+
+        <h3 class="title" style="font-size:18px; margin-top:14px;">Как се обработват ремонти</h3>
+        <ul class="muted" style="margin:10px 0 0; padding-left:18px;">
+          <li>Сигналите се преглеждат и се отбелязва статус.</li>
+          <li>При нужда се търси оферта/изпълнител.</li>
+          <li>След завършване се публикува кратко обобщение.</li>
+        </ul>
+
+        <div class="section-sep"></div>
+
+        <h3 class="title" style="font-size:18px; margin-top:14px;">Архив (пример)</h3>
+        <div class="list">
+          <div class="item">
+            <div class="item-top">
+              <div>
+                <div class="item-title">Смяна на крушки — етаж 2</div>
+                <div class="item-sub">Подменени 3 бр. · Проверен датчик.</div>
+              </div>
+              <span class="badge b-done">Завършен</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item-top">
+              <div>
+                <div class="item-title">Реглаж на входна врата</div>
+                <div class="item-sub">Подменен затваряч · Настройка на сила.</div>
+              </div>
+              <span class="badge b-done">Завършен</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <a class="back" href="../index.html">← Назад към менюто</a>
+  </section>
+</main>
+
+<script>
+  // date/time in header
+  function setDateTime(){
+    const el = document.getElementById('dt');
+    const now = new Date();
+    el.textContent = "🕒 " + now.toLocaleString('bg-BG', {
+      weekday:'short', year:'numeric', month:'2-digit', day:'2-digit',
+      hour:'2-digit', minute:'2-digit'
+    });
+  }
+  setDateTime();
+  setInterval(setDateTime, 10000);
+
+  // Optional: update "Обновено" pill to current time
+  const updatedPill = document.querySelector('.actions-between .pill-local');
+  if(updatedPill){
+    updatedPill.textContent = "Обновено: " + new Date().toLocaleString('bg-BG', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Съобщения — Вх. А</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+
+  <style>
+    .news-list{
+      margin-top:18px;
+      display:grid;
+      gap:16px;
+    }
+
+    .news{
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.10);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .news-header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .news-title{
+      font-size:20px;
+      font-weight:900;
+      line-height:1.25;
+      letter-spacing:.2px;
+    }
+
+    .news-date{
+      font-size:14px;
+      color:var(--muted);
+      white-space:nowrap;
+    }
+
+    .news p{
+      margin:10px 0 0;
+      font-size:16px;
+      line-height:1.6;
+      color:var(--text);
+    }
+
+    .label{
+      display:inline-block;
+      margin-top:12px;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.08);
+      color:var(--muted);
+    }
+
+    .urgent{
+      border-left:7px solid #ef4444;
+      padding-left:14px;
+    }
+    .important{
+      border-left:7px solid #f59e0b;
+      padding-left:14px;
+    }
+    .info{
+      border-left:7px solid rgba(255,255,255,0.18);
+      padding-left:14px;
+    }
+
+    .top-row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="logo">A</div>
+      <div>
+        <div class="brand-title">Етажна собственост — бл. 1, вх. А</div>
+        <div class="brand-sub">София, ж.к. Стрелбище</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:center;">
+      <span class="pill" id="dt">—</span>
+      <a class="pill" href="../index.html" style="text-decoration:none;">← Меню</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="panel">
+    <h1 class="h1">📢 Съобщения</h1>
+    <p class="sub">
+      Тук се публикуват официални съобщения от Домсъвета. Най-новите са най-отгоре.
+    </p>
+
+    <div class="top-row">
+      <span class="pill">🔴 Аварийно</span>
+      <span class="pill">🟠 Важно</span>
+      <span class="pill">⚪ Информация</span>
+    </div>
+
+    <div class="news-list">
+      <article class="news urgent">
+        <div class="news-header">
+          <div class="news-title">⚠️ Временно спиране на водата</div>
+          <div class="news-date">22.01.2026 · 09:15</div>
+        </div>
+        <p>
+          Поради авария по водопроводната инсталация водоподаването във вход А ще бъде
+          временно спряно <b>днес между 10:00 и 14:00 ч.</b>
+        </p>
+        <p>Молим, при възможност, да си осигурите вода предварително.</p>
+        <span class="label">АВАРИЙНО</span>
+      </article>
+
+      <article class="news important">
+        <div class="news-header">
+          <div class="news-title">🔧 Профилактика на голям асансьор</div>
+          <div class="news-date">20.01.2026 · 18:40</div>
+        </div>
+        <p>
+          На <b>24.01.2026 (събота)</b> между <b>10:00 – 12:00 ч.</b> ще бъде извършена
+          планирана профилактика на големия асансьор.
+        </p>
+        <p>В този период асансьорът може да бъде временно спрян.</p>
+        <span class="label">ВАЖНО</span>
+      </article>
+
+      <article class="news important">
+        <div class="news-header">
+          <div class="news-title">🚪 Проверка и настройка на входната врата</div>
+          <div class="news-date">19.01.2026 · 12:05</div>
+        </div>
+        <p>
+          Ще бъде извършена проверка на входната врата и системата за достъп. Ако имате проблем,
+          моля уведомете Домсъвета.
+        </p>
+        <span class="label">ВАЖНО</span>
+      </article>
+
+      <article class="news info">
+        <div class="news-header">
+          <div class="news-title">💳 Напомняне за месечните такси</div>
+          <div class="news-date">18.01.2026 · 11:10</div>
+        </div>
+        <p>
+          Напомняме, че срокът за заплащане на месечните такси е до <b>25-о число</b>.
+          При въпроси, моля свържете се с Домсъвета.
+        </p>
+        <span class="label">ИНФОРМАЦИЯ</span>
+      </article>
+
+      <article class="news info">
+        <div class="news-header">
+          <div class="news-title">🧹 Почистване на общите части</div>
+          <div class="news-date">15.01.2026 · 16:30</div>
+        </div>
+        <p>
+          Редовното почистване на общите части се извършва по график. Молим да не се оставят
+          лични вещи по стълбите и площадките.
+        </p>
+        <span class="label">ИНФОРМАЦИЯ</span>
+      </article>
+
+      <article class="news info">
+        <div class="news-header">
+          <div class="news-title">📅 Предстоящо Общо събрание</div>
+          <div class="news-date">10.01.2026 · 19:00</div>
+        </div>
+        <p>
+          Предстои Общо събрание на етажната собственост. Датата, дневният ред и материалите
+          ще бъдат публикувани и в секция „Общо събрание“.
+        </p>
+        <span class="label">СЪБРАНИЕ</span>
+      </article>
+
+      <article class="news info">
+        <div class="news-header">
+          <div class="news-title">🐜 Профилактична обработка срещу вредители</div>
+          <div class="news-date">06.01.2026 · 14:20</div>
+        </div>
+        <p>
+          Планира се профилактична обработка на общите части. Моля, следете за допълнителна информация
+          относно дата и час.
+        </p>
+        <span class="label">ИНФОРМАЦИЯ</span>
+      </article>
+    </div>
+
+    <a class="back" href="../index.html">← Назад към менюто</a>
+  </section>
+</main>
+
+<!-- Global JS for date/time + A-/A+ -->
+<script src="../assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Общо събрание — Вх. А</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+
+  <style>
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+    }
+    @media (min-width: 980px){
+      .grid{ grid-template-columns: 1.15fr 0.85fr; }
+    }
+
+    .card{
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.10);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .title{
+      margin:0;
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .muted{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.5;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:28px;
+      padding:0 12px;
+      font-size:12px;
+      font-weight:800;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.08);
+      color:var(--muted);
+      white-space:nowrap;
+    }
+    .pill-upcoming{ border-color: rgba(59,130,246,0.55); }
+    .pill-done{ border-color: rgba(34,197,94,0.65); }
+    .pill-important{ border-color: rgba(245,158,11,0.75); }
+
+    .kv{
+      margin-top:12px;
+      display:grid;
+      gap:10px;
+    }
+    .kv-row{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,0.18);
+      border-radius:16px;
+      padding:10px 12px;
+      font-size:15px;
+      color:var(--text);
+    }
+    .kv-row b{ font-weight:900; }
+
+    .agenda{
+      margin-top:12px;
+      padding-left:18px;
+      color:var(--text);
+      line-height:1.55;
+      font-size:15px;
+    }
+
+    .docs{
+      margin-top:12px;
+      display:grid;
+      gap:10px;
+    }
+    .doc{
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,0.18);
+      border-radius:18px;
+      padding:12px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .doc b{ font-weight:900; }
+    .doc small{ color:var(--muted); display:block; margin-top:3px; }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.10);
+      color:var(--text);
+      font-size:14px;
+      font-weight:900;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .btn:hover{ background:rgba(255,255,255,0.14); }
+
+    details{
+      margin-top:12px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,0.18);
+      border-radius:18px;
+      padding:12px 14px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight:900;
+      font-size:16px;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    details p{
+      margin:10px 0 0;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:14px;
+    }
+
+    .list{
+      margin-top:12px;
+      display:grid;
+      gap:12px;
+    }
+    .meeting{
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,0.18);
+      border-radius:18px;
+      padding:14px;
+    }
+    .meeting-top{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+    }
+    .meeting-title{
+      font-weight:950;
+      font-size:16px;
+    }
+    .meeting-sub{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.45;
+    }
+    .meeting-actions{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .info-box{
+      margin-top:12px;
+      border:1px dashed var(--stroke);
+      border-radius:18px;
+      padding:14px;
+      font-size:14px;
+      color:var(--muted);
+      line-height:1.5;
+      background:rgba(255,255,255,0.05);
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="logo">A</div>
+      <div>
+        <div class="brand-title">Етажна собственост — бл. 1, вх. А</div>
+        <div class="brand-sub">София, ж.к. Стрелбище</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+      <span class="pill" id="dt">—</span>
+      <a class="pill" href="../index.html" style="text-decoration:none;">← Меню</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="panel">
+    <h1 class="h1">🏛️ Общо събрание</h1>
+    <p class="sub">
+      Покани, дневен ред, материали и протоколи от Общи събрания.
+    </p>
+
+    <div class="grid">
+
+      <!-- LEFT: Upcoming meeting -->
+      <div class="card">
+        <h2 class="title">Следващо събрание</h2>
+        <p class="muted">Информацията е примерна (мокъп) и се попълва от Домсъвета.</p>
+
+        <div class="kv">
+          <div class="kv-row"><b>Статус:</b> <span class="pill pill-upcoming">Предстоящо</span></div>
+          <div class="kv-row"><b>Дата и час:</b> 30.01.2026 · 19:00</div>
+          <div class="kv-row"><b>Място:</b> фоайе, вход А</div>
+          <div class="kv-row"><b>Кворум (инфо):</b> ще се отбележи при започване</div>
+        </div>
+
+        <div class="info-box">
+          📌 Ако не можете да присъствате, можете да упълномощите друг собственик/съсед (виж „Пълномощно“).
+        </div>
+
+        <h3 class="title" style="font-size:18px;margin-top:14px;">Дневен ред (пример)</h3>
+        <ol class="agenda">
+          <li>Приемане на бюджет за 2026 г. (поддръжка и фонд ремонт).</li>
+          <li>Избор на изпълнител за поддръжка/профилактика на асансьора.</li>
+          <li>Обсъждане на ремонт на входната врата и чип-достъп.</li>
+          <li>Организация за почистване и график.</li>
+          <li>Разни.</li>
+        </ol>
+
+        <h3 class="title" style="font-size:18px;margin-top:14px;">Материали (за сваляне)</h3>
+        <div class="docs">
+          <div class="doc">
+            <div>
+              <b>📄 Покана за Общо събрание</b>
+              <small>PDF · публикувано: 10.01.2026</small>
+            </div>
+            <a class="btn" href="#">⬇️ Изтегли</a>
+          </div>
+
+          <div class="doc">
+            <div>
+              <b>📊 Проектобюджет 2026</b>
+              <small>PDF · поддръжка и фонд ремонт</small>
+            </div>
+            <a class="btn" href="#">⬇️ Изтегли</a>
+          </div>
+
+          <div class="doc">
+            <div>
+              <b>🧾 Оферти (пример)</b>
+              <small>ZIP/PDF · оферти от фирми</small>
+            </div>
+            <a class="btn" href="#">⬇️ Изтегли</a>
+          </div>
+
+          <div class="doc">
+            <div>
+              <b>📝 Пълномощно (образец)</b>
+              <small>PDF · за представител на събранието</small>
+            </div>
+            <a class="btn" href="#">⬇️ Изтегли</a>
+          </div>
+        </div>
+
+        <details>
+          <summary>Как да участвам, ако не мога да присъствам?</summary>
+          <p>
+            Можете да упълномощите друг собственик/жител чрез пълномощно (образец по-горе).
+            Добра практика е пълномощното да се предостави на Домсъвета преди началото на събранието.
+          </p>
+        </details>
+
+        <details>
+          <summary>Какво се публикува след събранието?</summary>
+          <p>
+            След събранието се публикува протокол с решенията, както и (по възможност) кратко обобщение.
+            Документите се пазят в „Документи“ и в „Архив“ по-долу.
+          </p>
+        </details>
+      </div>
+
+      <!-- RIGHT: Quick links + archive -->
+      <div class="card">
+        <h2 class="title">Архив и бърз достъп</h2>
+        <p class="muted">Минали събрания и важни връзки.</p>
+
+        <div class="docs">
+          <a class="btn" href="dokumenti.html">📄 Всички документи</a>
+          <a class="btn" href="taksi.html">💳 Такси и плащания</a>
+          <a class="btn" href="remonti.html">🏗️ Ремонти и поддръжка</a>
+        </div>
+
+        <div class="info-box">
+          🔒 Материалите и протоколите са предназначени за живущите във входа.
+        </div>
+
+        <h3 class="title" style="font-size:18px;margin-top:14px;">Минали събрания (пример)</h3>
+
+        <div class="list">
+          <div class="meeting">
+            <div class="meeting-top">
+              <div>
+                <div class="meeting-title">Общо събрание — 15.01.2026</div>
+                <div class="meeting-sub">Теми: бюджет, ремонти, асансьор, правила.</div>
+              </div>
+              <span class="pill pill-done">Проведено</span>
+            </div>
+            <div class="meeting-actions">
+              <a class="btn" href="#">⬇️ Протокол</a>
+              <a class="btn" href="#">⬇️ Решения</a>
+            </div>
+          </div>
+
+          <div class="meeting">
+            <div class="meeting-top">
+              <div>
+                <div class="meeting-title">Общо събрание — 10.10.2025</div>
+                <div class="meeting-sub">Теми: отчет, почистване, входни системи.</div>
+              </div>
+              <span class="pill pill-done">Проведено</span>
+            </div>
+            <div class="meeting-actions">
+              <a class="btn" href="#">⬇️ Протокол</a>
+              <a class="btn" href="#">⬇️ Решения</a>
+            </div>
+          </div>
+
+          <div class="meeting">
+            <div class="meeting-top">
+              <div>
+                <div class="meeting-title">Общо събрание — 05.03.2025</div>
+                <div class="meeting-sub">Теми: фонд ремонт, асансьор, дребни ремонти.</div>
+              </div>
+              <span class="pill pill-done">Проведено</span>
+            </div>
+            <div class="meeting-actions">
+              <a class="btn" href="#">⬇️ Протокол</a>
+              <a class="btn" href="#">⬇️ Решения</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box" style="margin-top:14px;">
+          ✅ Препоръка: след всяко събрание публикувайте „Протокол“ и „Решения“ като отделни файлове — по-лесно се намират.
+        </div>
+      </div>
+
+    </div>
+
+    <a class="back" href="../index.html">← Назад към менюто</a>
+  </section>
+</main>
+
+<script>
+  function setDateTime(){
+    const el = document.getElementById('dt');
+    const now = new Date();
+    el.textContent = "🕒 " + now.toLocaleString('bg-BG', {
+      weekday:'short', year:'numeric', month:'2-digit', day:'2-digit',
+      hour:'2-digit', minute:'2-digit'
+    });
+  }
+  setDateTime();
+  setInterval(setDateTime, 10000);
+</script>
+
+</body>
+</html>

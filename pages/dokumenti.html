@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Документи — Вх. А</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+
+  <style>
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+    }
+
+    .card{
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.10);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .title{
+      margin:0;
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+
+    .muted{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.5;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:28px;
+      padding:0 12px;
+      font-size:12px;
+      font-weight:700;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.08);
+      color:var(--muted);
+      white-space:nowrap;
+    }
+
+    .doc-list{
+      margin-top:14px;
+      display:grid;
+      gap:12px;
+    }
+
+    .doc{
+      border:1px solid var(--stroke);
+      background:rgba(0,0,0,0.18);
+      border-radius:18px;
+      padding:14px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .doc-left{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+
+    .doc-icon{
+      font-size:22px;
+      line-height:1;
+    }
+
+    .doc-title{
+      font-weight:900;
+      font-size:16px;
+    }
+
+    .doc-sub{
+      margin-top:4px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.4;
+    }
+
+    .doc-meta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:6px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.10);
+      color:var(--text);
+      font-size:14px;
+      font-weight:900;
+      text-decoration:none;
+      cursor:pointer;
+    }
+
+    .btn:hover{ background:rgba(255,255,255,0.14); }
+
+    .section-sep{
+      margin-top:14px;
+      border-top:1px solid var(--stroke);
+    }
+
+    .info-box{
+      margin-top:14px;
+      border:1px dashed var(--stroke);
+      border-radius:18px;
+      padding:14px;
+      font-size:14px;
+      color:var(--muted);
+      line-height:1.5;
+      background:rgba(255,255,255,0.05);
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="logo">A</div>
+      <div>
+        <div class="brand-title">Етажна собственост — бл. 1, вх. А</div>
+        <div class="brand-sub">София, ж.к. Стрелбище</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+      <span class="pill" id="dt">—</span>
+      <a class="pill" href="../index.html" style="text-decoration:none;">← Меню</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="panel">
+    <h1 class="h1">📄 Документи</h1>
+    <p class="sub">
+      Официални документи на етажната собственост. Достъпни за живущите във входа.
+    </p>
+
+    <div class="grid">
+
+      <!-- Правилници -->
+      <div class="card">
+        <h2 class="title">📘 Правилници и основни документи</h2>
+        <p class="muted">Основни документи, валидни за всички живущи.</p>
+
+        <div class="doc-list">
+          <div class="doc">
+            <div class="doc-left">
+              <div class="doc-icon">📘</div>
+              <div>
+                <div class="doc-title">Правилник за вътрешния ред</div>
+                <div class="doc-sub">Актуален правилник, приет на Общо събрание.</div>
+                <div class="doc-meta">
+                  <span class="pill">PDF</span>
+                  <span class="pill">Последна версия</span>
+                  <span class="pill">2025</span>
+                </div>
+              </div>
+            </div>
+            <a class="btn" href="#">⬇️ Изтегли</a>
+          </div>
+
+          <div class="doc">
+            <div class="doc-left">
+              <div class="doc-icon">📄</div>
+              <div>
+                <div class="doc-title">Учредителен протокол</div>
+                <div class="doc-sub">Документ за създаване на етажната собственост.</div>
+                <div class="doc-meta">
+                  <span class="pill">PDF</span>
+                  <span class="pill">Архив</span>
+                </div>
+              </div>
+            </div>
+            <a class="btn" href="#">⬇️ Изтегли</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Общи събрания -->
+      <div class="card">
+        <h2 class="title">🏛️ Общи събрания</h2>
+        <p class="muted">Протоколи, решения и покани.</p>
+
+        <div class="doc-list">
+          <div class="doc">
+            <div class="doc-left">
+              <div class="doc-icon">📝</div>
+              <div>
+                <div class="doc-title">Протокол — Общо събрание 15.01.2026</div>
+                <div class="doc-sub">Приети решения относно бюджет и ремонти.</div>
+                <div class="doc-meta">
+                  <span class="pill">PDF</span>
+                  <span class="pill">Протокол</span>
+                </div>
+              </div>
+            </div>
+            <a class="btn" href="#">⬇️ Изтегли</a>
+          </div>
+
+          <div class="doc">
+            <div class="doc-left">
+              <div class="doc-icon">📢</div>
+              <div>
+                <div class="doc-title">Покана за Общо събрание — 10.01.2026</div>
+                <div class="doc-sub">Дневен ред и място на провеждане.</div>
+                <div class="doc-meta">
+                  <span class="pill">PDF</span>
+                  <span class="pill">Покана</span>
+                </div>
+              </div>
+            </div>
+            <a class="btn" href="#">⬇️ Изтегли</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Финансови -->
+      <div class="card">
+        <h2 class="title">💳 Финансови отчети</h2>
+        <p class="muted">Прозрачност на приходите и разходите.</p>
+
+        <div class="doc-list">
+          <div class="doc">
+            <div class="doc-left">
+              <div class="doc-icon">📊</div>
+              <div>
+                <div class="doc-title">Финансов отчет — 2025 г.</div>
+                <div class="doc-sub">Обобщен отчет за приходите и разходите.</div>
+                <div class="doc-meta">
+                  <span class="pill">PDF</span>
+                  <span class="pill">Годишен отчет</span>
+                </div>
+              </div>
+            </div>
+            <a class="btn" href="#">⬇️ Изтегли</a>
+          </div>
+
+          <div class="doc">
+            <div class="doc-left">
+              <div class="doc-icon">📈</div>
+              <div>
+                <div class="doc-title">Месечен отчет — декември 2025</div>
+                <div class="doc-sub">Такси, разходи и наличности.</div>
+                <div class="doc-meta">
+                  <span class="pill">PDF</span>
+                  <span class="pill">Месечен</span>
+                </div>
+              </div>
+            </div>
+            <a class="btn" href="#">⬇️ Изтегли</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Договори -->
+      <div class="card">
+        <h2 class="title">📑 Договори и услуги</h2>
+        <p class="muted">Договори с външни фирми.</p>
+
+        <div class="doc-list">
+          <div class="doc">
+            <div class="doc-left">
+              <div class="doc-icon">🛗</div>
+              <div>
+                <div class="doc-title">Договор — поддръжка на асансьор</div>
+                <div class="doc-sub">Фирма за сервиз и аварийна поддръжка.</div>
+                <div class="doc-meta">
+                  <span class="pill">PDF</span>
+                  <span class="pill">Активен</span>
+                </div>
+              </div>
+            </div>
+            <a class="btn" href="#">⬇️ Изтегли</a>
+          </div>
+
+          <div class="doc">
+            <div class="doc-left">
+              <div class="doc-icon">🧹</div>
+              <div>
+                <div class="doc-title">Договор — почистване</div>
+                <div class="doc-sub">График и условия за почистване.</div>
+                <div class="doc-meta">
+                  <span class="pill">PDF</span>
+                  <span class="pill">Активен</span>
+                </div>
+              </div>
+            </div>
+            <a class="btn" href="#">⬇️ Изтегли</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="info-box">
+        🔒 Документите са предназначени само за живущите във входа.  
+        При нужда от корекция или липсващ документ, моля свържете се с Домсъвета.
+      </div>
+
+    </div>
+
+    <a class="back" href="../index.html">← Назад към менюто</a>
+  </section>
+</main>
+
+<script>
+  function setDateTime(){
+    const el = document.getElementById('dt');
+    const now = new Date();
+    el.textContent = "🕒 " + now.toLocaleString('bg-BG', {
+      weekday:'short', year:'numeric', month:'2-digit', day:'2-digit',
+      hour:'2-digit', minute:'2-digit'
+    });
+  }
+  setDateTime();
+  setInterval(setDateTime, 10000);
+</script>
+
+</body>
+</html>
