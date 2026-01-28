@@ -111,13 +111,21 @@ background-attachment: fixed;
 
 /* Big “banner buttons” for elderly-friendly UI */
 .banner{
-  min-height: 140px;
-  display: flex;
-  flex-direction: column;
+  display:block;
+  text-decoration:none;
+  color: var(--text);
+  border: 1px solid var(--stroke);
+  background: var(--card2);
+  border-radius: 22px;
+  padding: 18px 18px;
+  transition: transform .12s ease, background .12s ease;
+  outline: none;
+
+  min-height: 130px;        /* ✅ това решава проблема */
+  display: flex;            /* центрира съдържанието */
   justify-content: center;
-  padding: 22px;
-  border-radius: 26px;
 }
+
 
 .banner:hover{ transform: translateY(-2px); background: rgba(255,255,255,0.12); }
 .banner:active{ transform: translateY(0px) scale(0.995); }
@@ -212,5 +220,6 @@ background-attachment: fixed;
 .font-btn:hover{ background:rgba(255,255,255,0.16); }
 .font-btn:active{ transform:scale(.97); }
 .font-btn:focus{ outline:none; box-shadow:0 0 0 3px rgba(56,189,248,0.35); }
+
 
 
