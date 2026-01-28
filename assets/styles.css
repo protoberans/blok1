@@ -31,6 +31,7 @@
 /* Force text color everywhere */
 body{
   color: var(--text);
+   font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -379,6 +380,7 @@ body{
 .font-btn:hover{ background:rgba(255,255,255,0.16); }
 .font-btn:active{ transform:scale(.97); }
 .font-btn:focus{ outline:none; box-shadow: var(--shadow-focus); }
+
 
 
 
