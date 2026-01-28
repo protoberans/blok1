@@ -380,6 +380,38 @@ body{
 .font-btn:active{ transform:scale(.97); }
 .font-btn:focus{ outline:none; box-shadow: var(--shadow-focus); }
 
+/* Small phones: stack topbar in two rows */
+@media (max-width: 480px){
+  .topbar-inner{
+    flex-direction: column;       /* ✅ brand на ред 1, actions на ред 2 */
+    align-items: stretch;         /* ✅ използва цялата ширина */
+    gap: 10px;
+  }
+
+  .brand{
+    width: 100%;
+  }
+
+  .brand-title,
+  .brand-sub{
+    max-width: 100%;
+    white-space: normal;          /* ✅ да не се реже */
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .topbar-actions{
+    width: 100%;
+    justify-content: flex-end;    /* ✅ вдясно */
+  }
+
+  .pill{
+    height: 30px;                 /* малко по-компактно */
+    padding: 0 12px;
+    font-size: 12px;
+  }
+}
+
 
 
 
