@@ -141,6 +141,7 @@ background-attachment: fixed;
   font-size: 22px;
   font-weight: 750;
   letter-spacing: .2px;
+  white-space: nowrap;
 }
 .banner-desc{
   margin-top: 8px;
@@ -220,6 +221,7 @@ background-attachment: fixed;
 .font-btn:hover{ background:rgba(255,255,255,0.16); }
 .font-btn:active{ transform:scale(.97); }
 .font-btn:focus{ outline:none; box-shadow:0 0 0 3px rgba(56,189,248,0.35); }
+
 
 
 
