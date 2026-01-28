@@ -29,11 +29,8 @@
 }
 
 *{ box-sizing:border-box; }
-html, body{ height:100%; }
-body{
-  margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color: var(--text);
+html{
+  min-height:100%;
   background:
     radial-gradient(900px 520px at 15% 10%, rgba(56,189,248,0.18), transparent 60%),
     radial-gradient(900px 520px at 85% 20%, rgba(167,139,250,0.16), transparent 60%),
@@ -41,10 +38,14 @@ body{
     linear-gradient(180deg, var(--bg1), var(--bg2));
   background-repeat:no-repeat;
   background-size:cover;
-
-  /* Avoid layout jank on mobile */
-  min-height:100%;
+  background-color: var(--bg2); /* fallback */
 }
+
+body{
+  min-height:100vh;
+  background: transparent; /* важно */
+}
+
 
 /* On mobile, background-attachment: fixed often "breaks" scrolling */
 @media (min-width: 900px){
@@ -355,3 +356,4 @@ body{
 .font-btn:hover{ background:rgba(255,255,255,0.16); }
 .font-btn:active{ transform:scale(.97); }
 .font-btn:focus{ outline:none; box-shadow: var(--shadow-focus); }
+
