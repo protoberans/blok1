@@ -1,35 +1,97 @@
+/* =========================
+   Base / Theme
+   Mobile-first, responsive
+   ========================= */
+
 :root{
   --bg1:#0b1220;
   --bg2:#0f172a;
+
   --card: rgba(255,255,255,0.07);
   --card2: rgba(255,255,255,0.10);
   --stroke: rgba(255,255,255,0.12);
+
   --text: rgba(255,255,255,0.92);
   --muted: rgba(255,255,255,0.70);
+
+  /* Sizing tokens */
+  --radius-lg: 22px;
+  --radius-md: 18px;
+  --radius-sm: 16px;
+
+  --container: 1100px;
+
+  /* Touch-friendly spacing */
+  --pad-page-x: 14px;
+  --pad-page-y: 16px;
+
+  --shadow-focus: 0 0 0 3px rgba(56,189,248,0.35);
 }
 
-*{ box-sizing: border-box; }
-html, body{ min-height:100%; }
+*{ box-sizing:border-box; }
+html, body{ height:100%; }
 body{
   margin:0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
   background:
     radial-gradient(900px 520px at 15% 10%, rgba(56,189,248,0.18), transparent 60%),
     radial-gradient(900px 520px at 85% 20%, rgba(167,139,250,0.16), transparent 60%),
     radial-gradient(900px 520px at 50% 90%, rgba(34,211,238,0.10), transparent 60%),
     linear-gradient(180deg, var(--bg1), var(--bg2));
-  color: var(--text);
+  background-repeat:no-repeat;
+  background-size:cover;
 
-background-repeat: no-repeat;
-background-size: cover;
-background-attachment: fixed;
+  /* Avoid layout jank on mobile */
+  min-height:100%;
 }
+
+/* On mobile, background-attachment: fixed often "breaks" scrolling */
+@media (min-width: 900px){
+  body{ background-attachment: fixed; }
+}
+
+/* =========================
+   Layout
+   ========================= */
 
 .container{
-  max-width: 1100px;
+  max-width: var(--container);
   margin: 0 auto;
-  padding: 18px 16px 40px;
+  padding: var(--pad-page-y) var(--pad-page-x) 40px;
 }
+
+/* Panel */
+.panel{
+  border:1px solid var(--stroke);
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+}
+@media (min-width: 700px){
+  .panel{ padding: 18px; }
+}
+
+/* Typography */
+.h1{
+  margin: 6px 0 0;
+  font-size: 24px;
+  letter-spacing: 0.2px;
+}
+.sub{
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.45;
+}
+@media (min-width: 700px){
+  .h1{ font-size: 28px; }
+  .sub{ font-size: 16px; }
+}
+
+/* =========================
+   Topbar (mobile-first)
+   ========================= */
 
 .topbar{
   position: sticky;
@@ -38,118 +100,192 @@ background-attachment: fixed;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   background: rgba(0,0,0,0.22);
-  border-bottom: 1px solid var(--stroke);
+  border-bottom:1px solid var(--stroke);
 }
 
 .topbar-inner{
-  max-width: 1100px;
+  max-width: var(--container);
   margin: 0 auto;
-  padding: 14px 16px;
+  padding: 12px var(--pad-page-x);
   display:flex;
-  align-items:center;
+  align-items:flex-start;
   justify-content:space-between;
-  gap: 12px;
+  gap:10px;
 }
 
+/* Brand block */
 .brand{
   display:flex;
   align-items:center;
-  gap: 12px;
-  min-width: 0;
+  gap:10px;
+  min-width: 0; /* allows text to truncate instead of overflow */
 }
 .logo{
-  width: 44px;
-  height: 44px;
-  border-radius: 16px;
+  width:40px;
+  height:40px;
+  border-radius: 14px;
   background: rgba(255,255,255,0.10);
   border: 1px solid var(--stroke);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-weight: 700;
+  font-weight:800;
+  flex: 0 0 auto;
 }
 .brand-title{
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight:800;
+  line-height:1.2;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 48vw; /* prevents clash with right-side pills on mobile */
 }
 .brand-sub{
   color: var(--muted);
-  font-size: 14px;
+  font-size: 12px;
   margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 48vw;
 }
 
-.panel{
-  border: 1px solid var(--stroke);
-  background: var(--card);
-  border-radius: 22px;
-  padding: 18px;
+/* Right side in topbar */
+.topbar-actions{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:flex-end;
 }
 
-.h1{
-  margin: 6px 0 0;
-  font-size: 28px;
-  letter-spacing: 0.2px;
+/* On very small screens, stack right side neatly */
+@media (max-width: 420px){
+  .topbar-inner{
+    align-items:flex-start;
+    gap:8px;
+  }
+  .topbar-actions{
+    flex-direction: column;
+    align-items:flex-end;
+  }
+  .brand-title, .brand-sub{
+    max-width: 56vw;
+  }
 }
-.sub{
-  margin: 10px 0 0;
-  color: var(--muted);
-  font-size: 16px;
+
+@media (min-width: 700px){
+  .topbar-inner{
+    padding: 14px var(--pad-page-x);
+    align-items:center;
+  }
+  .logo{ width:44px; height:44px; border-radius:16px; }
+  .brand-title{ font-size: 15px; max-width: none; }
+  .brand-sub{ font-size: 14px; max-width: none; }
+  .topbar-actions{ flex-direction: row; }
 }
+
+/* =========================
+   Pills / Small UI chips
+   ========================= */
+
+.pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:32px;
+  padding:0 14px;
+  font-size:12px;
+  font-weight:700;
+  line-height:1;
+  border-radius:999px;
+  border:1px solid var(--stroke);
+  background:rgba(255,255,255,0.08);
+  color:var(--muted);
+  white-space:nowrap;
+}
+
+/* =========================
+   Grid (index cards)
+   ========================= */
 
 .grid{
-  margin-top: 18px;
+  margin-top: 16px;
   display:grid;
   grid-template-columns: 1fr;
   gap: 14px;
 }
-@media (min-width: 700px){
+
+@media (min-width: 680px){
   .grid{ grid-template-columns: 1fr 1fr; }
 }
+
 @media (min-width: 980px){
   .grid{ grid-template-columns: 1fr 1fr 1fr; }
 }
 
-/* Big “banner buttons” for elderly-friendly UI */
+/* =========================
+   Banner buttons
+   ========================= */
+
 .banner{
   display:block;
   text-decoration:none;
-  min-height: 160px;
   color: var(--text);
   border: 1px solid var(--stroke);
   background: var(--card2);
-  border-radius: 22px;
-  padding: 18px 18px;
+  border-radius: var(--radius-lg);
+  padding: 18px;
+
   transition: transform .12s ease, background .12s ease;
   outline: none;
 
-  min-height: 130px;        /* ✅ това решава проблема */
-  display: flex;            /* центрира съдържанието */
+  /* uniform sizing */
+  min-height: 150px;
+
+  /* stable layout */
+  display:flex;
+  flex-direction: column;
   justify-content: center;
 }
 
-
-.banner:hover{ transform: translateY(-2px); background: rgba(255,255,255,0.12); }
+.banner:hover{
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.12);
+}
 .banner:active{ transform: translateY(0px) scale(0.995); }
-.banner:focus{ box-shadow: 0 0 0 3px rgba(56,189,248,0.35); }
+.banner:focus{ box-shadow: var(--shadow-focus); }
 
+/* Top row inside banner */
 .banner-top{
   display:flex;
   align-items:flex-start;
   justify-content:space-between;
   gap: 10px;
 }
+
+/* Title: by default allow wrapping on small phones (prevents overflow) */
 .banner-title{
-  font-size: 22px;
-  font-weight: 750;
+  font-size: 20px;
+  font-weight: 800;
   letter-spacing: .2px;
+  line-height: 1.15;
+
+  /* prevent weird overflow */
+  overflow:hidden;
+  text-overflow: ellipsis;
 }
+
+/* Description */
 .banner-desc{
   margin-top: 8px;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 1.35;
 }
 
+/* Icon */
 .icon{
   width: 44px;
   height: 44px;
@@ -162,6 +298,21 @@ background-attachment: fixed;
   flex: 0 0 auto;
   font-size: 20px;
 }
+
+/* If you want titles to stay on one line on bigger screens (uniform look),
+   enforce nowrap only when there's enough width. */
+@media (min-width: 700px){
+  .banner{ min-height: 160px; }
+  .banner-title{
+    font-size: 22px;
+    white-space: nowrap;
+  }
+  .banner-desc{ font-size: 15px; }
+}
+
+/* =========================
+   Footer / Back link
+   ========================= */
 
 .footer{
   margin-top: 18px;
@@ -177,7 +328,11 @@ background-attachment: fixed;
   font-size: 14px;
 }
 
-/* Global font size controls (A-/A+) */
+/* =========================
+   (Optional) Font buttons
+   Kept, but harmless if unused
+   ========================= */
+
 .font-controls{
   display:flex;
   gap:10px;
@@ -197,32 +352,6 @@ background-attachment: fixed;
   font-weight:900;
   cursor:pointer;
 }
-
-.pill{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-
-  height:32px;              /* 🔥 ключът */
-  padding:0 14px;           /* вертикалният padding се маха */
-  
-  font-size:12px;
-  font-weight:700;
-  line-height:1;
-
-  border-radius:999px;
-  border:1px solid var(--stroke);
-  background:rgba(255,255,255,0.08);
-  color:var(--muted);
-  white-space:nowrap;
-}
-
-
 .font-btn:hover{ background:rgba(255,255,255,0.16); }
 .font-btn:active{ transform:scale(.97); }
-.font-btn:focus{ outline:none; box-shadow:0 0 0 3px rgba(56,189,248,0.35); }
-
-
-
-
-
+.font-btn:focus{ outline:none; box-shadow: var(--shadow-focus); }
