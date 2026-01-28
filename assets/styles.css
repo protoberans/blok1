@@ -257,13 +257,57 @@ body{
   transition: transform .12s ease, background .12s ease;
   outline: none;
 
-  /* uniform sizing */
   min-height: 150px;
 
-  /* stable layout */
   display:flex;
   flex-direction: column;
   justify-content: center;
+
+  position: relative; /* ✅ за notif badge */
+}
+
+/* Notification badge */
+.notif{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+
+  background: #dc2626;
+  color: #fff;
+
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 4px 12px rgba(220,38,38,.45);
+}
+
+/* Optional pulse effect */
+.notif::after{
+  content:"";
+  position:absolute;
+  inset:-4px;
+  border-radius:999px;
+  border:2px solid rgba(220,38,38,.6);
+  animation:pulse 1.6s infinite;
+}
+
+@keyframes pulse{
+  0%{ opacity:.8; transform:scale(1); }
+  100%{ opacity:0; transform:scale(1.6); }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .notif::after{ animation: none; }
 }
 
 .banner:hover{
@@ -281,18 +325,16 @@ body{
   gap: 10px;
 }
 
-/* Title: by default allow wrapping on small phones (prevents overflow) */
 .banner-title{
   font-size: 20px;
   font-weight: 800;
   letter-spacing: .2px;
   line-height: 1.2;
 
-  white-space: normal;     /* ✅ позволява пренасяне на мобилен */
+  white-space: normal;
   overflow-wrap: break-word;
 }
 
-/* само на големи екрани – банков изглед */
 @media (min-width: 980px){
   .banner-title{
     white-space: nowrap;
@@ -301,13 +343,13 @@ body{
   }
 }
 
-/* Description */
 .banner-desc{
   margin-top: 8px;
   font-size: 14px;
   color: var(--muted);
   line-height: 1.35;
 }
+
 
 /* Icon */
 .icon{
@@ -411,6 +453,7 @@ body{
     font-size: 12px;
   }
 }
+
 
 
 
