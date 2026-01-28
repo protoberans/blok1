@@ -7,14 +7,15 @@
   <link rel="stylesheet" href="../assets/styles.css" />
 
   <style>
-    .grid{
+    /* Page layout */
+    .page-grid{
       margin-top:18px;
       display:grid;
       grid-template-columns:1fr;
       gap:16px;
     }
     @media (min-width: 980px){
-      .grid{ grid-template-columns: 1.15fr 0.85fr; }
+      .page-grid{ grid-template-columns: 1.15fr 0.85fr; }
     }
 
     .card{
@@ -29,6 +30,7 @@
       font-size:20px;
       font-weight:900;
       letter-spacing:.2px;
+      color: var(--text);
     }
     .muted{
       margin-top:8px;
@@ -37,24 +39,7 @@
       line-height:1.5;
     }
 
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      height:28px;
-      padding:0 12px;
-      font-size:12px;
-      font-weight:900;
-      border-radius:999px;
-      border:1px solid var(--stroke);
-      background:rgba(255,255,255,0.08);
-      color:var(--muted);
-      white-space:nowrap;
-    }
-    .pill-primary{ border-color: rgba(59,130,246,0.55); }
-    .pill-green{ border-color: rgba(34,197,94,0.65); }
-    .pill-warn{ border-color: rgba(245,158,11,0.75); }
-
+    /* People cards */
     .people{
       margin-top:14px;
       display:grid;
@@ -78,6 +63,8 @@
       gap:12px;
       align-items:flex-start;
       flex-wrap:wrap;
+      min-width: 0;
+      flex: 1 1 320px;
     }
 
     .avatar{
@@ -92,12 +79,16 @@
       font-weight:950;
       font-size:16px;
       color:var(--text);
+      flex: 0 0 auto;
     }
+
+    .p-main{ min-width: 0; }
 
     .p-name{
       font-weight:950;
       font-size:16px;
       line-height:1.25;
+      color: var(--text);
     }
     .p-sub{
       margin-top:4px;
@@ -107,13 +98,14 @@
     }
 
     .p-meta{
-      margin-top:6px;
+      margin-top:8px;
       display:flex;
       gap:10px;
       flex-wrap:wrap;
       align-items:center;
     }
 
+    /* Buttons */
     .btn{
       display:inline-flex;
       align-items:center;
@@ -140,6 +132,26 @@
     }
     .btn-call:hover{ background:#15803d; }
 
+    /* Status/Info pills inside this page ONLY (do NOT override global .pill) */
+    .pill-local{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:28px;
+      padding:0 12px;
+      font-size:12px;
+      font-weight:900;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,0.08);
+      color:var(--muted);
+      white-space:nowrap;
+      max-width: 100%;
+    }
+    .pill-primary{ border-color: rgba(59,130,246,0.55); }
+    .pill-warn{ border-color: rgba(245,158,11,0.75); }
+
+    /* Key-value rows */
     .kv{
       margin-top:12px;
       display:grid;
@@ -196,6 +208,7 @@
       font-weight:900;
       font-size:16px;
       list-style:none;
+      color: var(--text);
     }
     summary::-webkit-details-marker{ display:none; }
     details p{
@@ -204,21 +217,36 @@
       line-height:1.55;
       font-size:14px;
     }
+
+    /* Mobile fixes: allow long pills inside p-meta to wrap */
+    @media (max-width: 480px){
+      .p-meta .pill-local{
+        white-space: normal;
+        height: auto;
+        line-height: 1.2;
+        padding: 8px 12px;
+      }
+      .btn{
+        width: 100%;          /* make call button full-width on small phones */
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 
 <body>
 
 <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <div style="min-width:0">
-          <div class="brand-title">Етажна собственост и домсъвет</div>
-          <div class="brand-sub">София (1404), ж.к. Стрелбище, бл. 1, вх. А</div>
-        </div>
+  <div class="topbar-inner">
+    <div class="brand">
+      <div style="min-width:0">
+        <div class="brand-title">Етажна собственост и домсъвет</div>
+        <div class="brand-sub">София (1404), ж.к. Стрелбище, бл. 1, вх. А</div>
       </div>
+    </div>
 
-    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+    <!-- ✅ clean + uses global responsive rules -->
+    <div class="topbar-actions">
       <span class="pill" id="dt">—</span>
       <a class="pill" href="../index.html" style="text-decoration:none;">← Меню</a>
     </div>
@@ -232,9 +260,9 @@
       Контакти, приемно време и отговорности на Домсъвета. Данните са примерни (мокъп).
     </p>
 
-    <div class="grid">
+    <div class="page-grid">
 
-      <!-- LEFT: People + responsibilities -->
+      <!-- LEFT -->
       <div class="card">
         <h2 class="title">Контакти (пример)</h2>
         <p class="muted">За повечето случаи – първо пишете/обадете се на Домсъвета.</p>
@@ -243,13 +271,13 @@
           <div class="person">
             <div class="p-left">
               <div class="avatar">ДС</div>
-              <div>
+              <div class="p-main">
                 <div class="p-name">Председател / Координатор</div>
                 <div class="p-sub">Организация, решения, комуникация с фирми и живущи.</div>
                 <div class="p-meta">
-                  <span class="pill pill-primary">Основен контакт</span>
-                  <span class="pill">Тел: __________</span>
-                  <span class="pill">Имейл: __________</span>
+                  <span class="pill-local pill-primary">Основен контакт</span>
+                  <span class="pill-local">Тел: __________</span>
+                  <span class="pill-local">Имейл: __________</span>
                 </div>
               </div>
             </div>
@@ -259,12 +287,12 @@
           <div class="person">
             <div class="p-left">
               <div class="avatar">К</div>
-              <div>
+              <div class="p-main">
                 <div class="p-name">Касиер</div>
                 <div class="p-sub">Такси, плащания, отчети, разписки (според правилата).</div>
                 <div class="p-meta">
-                  <span class="pill">Тел: ______________</span>
-                  <span class="pill">Revolut: +359 __________(за входни такси)</span>
+                  <span class="pill-local">Тел: ______________</span>
+                  <span class="pill-local">Revolut: +359 __________ (за входни такси)</span>
                 </div>
               </div>
             </div>
@@ -274,12 +302,12 @@
           <div class="person">
             <div class="p-left">
               <div class="avatar">Т</div>
-              <div>
+              <div class="p-main">
                 <div class="p-name">Техническа поддръжка (контакт)</div>
                 <div class="p-sub">Координация за ремонти, огледи и дребни технически проблеми.</div>
                 <div class="p-meta">
-                  <span class="pill">Тел: __________</span>
-                  <span class="pill pill-warn">За спешно: виж „Аварийни контакти“</span>
+                  <span class="pill-local">Тел: __________</span>
+                  <span class="pill-local pill-warn">За спешно: виж „Аварийни контакти“</span>
                 </div>
               </div>
             </div>
@@ -322,7 +350,7 @@
         </details>
       </div>
 
-      <!-- RIGHT: Quick links + reminders -->
+      <!-- RIGHT -->
       <div class="card">
         <h2 class="title">Бърз достъп</h2>
         <p class="muted">Най-често използваните секции.</p>
@@ -337,8 +365,7 @@
         </div>
 
         <div class="note" style="margin-top:14px;">
-          ✅ Добра практика: публикувайте всички решения, протоколи и отчети в „Документи“.
-          Това намалява въпросите и напрежението във входа.
+          ✅ Добра практика: прегледайте всички решения, протоколи и отчети в „Документи“.
         </div>
 
         <div class="note">
@@ -367,6 +394,3 @@
 
 </body>
 </html>
-
-
-
